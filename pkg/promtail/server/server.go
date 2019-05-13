@@ -49,6 +49,7 @@ func New(cfg Config, tms *targets.TargetManagers) (*Server, error) {
 	}
 
 	serv.HTTP.Path("/ready").Handler(http.HandlerFunc(serv.ready))
+	serv.HTTP.Path("/reload").Handler(http.HandlerFunc(serv.reload))
 	serv.HTTP.PathPrefix("/static/").Handler(http.FileServer(ui.Assets))
 	serv.HTTP.Path("/service-discovery").Handler(http.HandlerFunc(serv.serviceDiscovery))
 	serv.HTTP.Path("/targets").Handler(http.HandlerFunc(serv.targets))
